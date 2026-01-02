@@ -2,6 +2,8 @@
 
 High-performance CUDA GPU miner for the TETSUO blockchain. Supports multi-GPU mining with automatic work distribution.
 
+**Links:** [Website](https://tetsuoarena.com/) | [Node](https://github.com/Pavelevich/tetsuonode) | [Wallet SDK](https://github.com/Pavelevich/tetsuonpmwallet)
+
 ## Features
 
 - **Multi-GPU Support**: Automatically uses all available GPUs with optimized work distribution
@@ -54,11 +56,8 @@ cmake -B build -DCMAKE_BUILD_TYPE=Debug
 ## Usage
 
 ```bash
-# Basic usage (uses node's coinbase)
-./tetsuo-miner -o http://127.0.0.1:8337 -u rpcuser -p rpcpass
-
-# Mine to your address
-./tetsuo-miner -a TYourAddressHere -o http://127.0.0.1:8337
+# Mine to your wallet address (recommended)
+./tetsuo-miner -a TYourAddressHere -o http://127.0.0.1:8337 -u rpcuser -p rpcpass
 
 # Use specific GPUs
 ./tetsuo-miner -d 0,2 -a TYourAddressHere
