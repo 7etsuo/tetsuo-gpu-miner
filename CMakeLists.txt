@@ -102,6 +102,73 @@ target_compile_options(tetsuo-miner PRIVATE
 )
 
 #==============================================================================
+# Test Suite
+#==============================================================================
+
+# Correctness tests
+add_executable(test-sha256
+    tests/test_sha256.cu
+)
+
+target_include_directories(test-sha256 PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_link_libraries(test-sha256 PRIVATE
+    CUDA::cudart
+)
+
+target_compile_options(test-sha256 PRIVATE
+    $<$<COMPILE_LANGUAGE:CUDA>:
+        -O3
+        --use_fast_math
+        --expt-relaxed-constexpr
+    >
+)
+
+# Performance benchmarks
+add_executable(benchmark
+    tests/benchmark.cu
+)
+
+target_include_directories(benchmark PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_link_libraries(benchmark PRIVATE
+    CUDA::cudart
+)
+
+target_compile_options(benchmark PRIVATE
+    $<$<COMPILE_LANGUAGE:CUDA>:
+        -O3
+        --use_fast_math
+        --expt-relaxed-constexpr
+    >
+)
+
+# Comprehensive benchmarks for all variants
+add_executable(benchmark-all
+    tests/benchmark_all.cu
+)
+
+target_include_directories(benchmark-all PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_link_libraries(benchmark-all PRIVATE
+    CUDA::cudart
+)
+
+target_compile_options(benchmark-all PRIVATE
+    $<$<COMPILE_LANGUAGE:CUDA>:
+        -O3
+        --use_fast_math
+        --expt-relaxed-constexpr
+    >
+)
+
+#==============================================================================
 # Installation
 #==============================================================================
 
